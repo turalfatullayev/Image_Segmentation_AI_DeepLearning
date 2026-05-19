@@ -182,12 +182,11 @@ Place the downloaded file in the root directory of the project.
 |---|---|
 | Framework | PyTorch |
 | Image size | 256 × 256 |
-| Batch size | 8 |
+| Batch size | 25 |
 | Optimizer | Adam |
 | Learning rate | 1e-3 |
 | Loss function | BCE + Dice (50/50) |
 | Scheduler | ReduceLROnPlateau |
-| Early stopping patience | 7 epochs |
 | Hardware | NVIDIA T4 GPU (Google Colab) |
 
 ---
