@@ -104,7 +104,40 @@ Training for 25 epochs with Adam optimizer (lr=1e-3) and combined BCE + Dice los
 ├── training_curves.png # Loss, accuracy, IoU, Dice curves
 └── README.md
 ```
-
+---
+ 
+## Code Structure inside the Notebook
+ 
+The notebook is organized into the following clearly separated sections:
+ 
+### 1. Model Definition — U-Net Architecture
+- `DoubleConv` — two consecutive 3×3 Conv → BatchNorm → ReLU blocks
+- `EncoderBlock` — DoubleConv + MaxPool downsampling, saves skip connections
+- `DecoderBlock` — TransposedConv upsampling + skip connection concatenation + DoubleConv
+- `UNet` — full encoder–bottleneck–decoder assembly with 1×1 output conv + Sigmoid
+### 2. Data Loading and Preprocessing Pipeline
+- `OxfordPetDataset` — custom PyTorch Dataset class
+  - Auto-downloads dataset via `torchvision`
+  - Remaps trimap masks to binary (pet=1, background=0)
+  - Applies resize, random flips, rotation, color jitter, and ImageNet normalization
+- `get_dataloaders()` — factory function returning train / val / test DataLoaders
+### 3. Training Loop with Loss Function
+- `DiceLoss` — Dice loss for handling class imbalance
+- `CombinedLoss` — BCE Loss + Dice Loss (50/50 weighted)
+- `train_one_epoch()` — single epoch forward + backward pass
+- `train()` — full training loop with Adam optimizer, ReduceLROnPlateau scheduler, best model checkpointing, and early stopping
+- `pixel_accuracy()` — percentage of correctly classified pixels
+- `mean_iou()` — IoU per class (background + foreground) and mean IoU
+- `dice_score()` — Dice coefficient
+### 4. Evaluation Script with Metric Computation
+Located in `evaluate.py` :
+- `pixel_accuracy()` — percentage of correctly classified pixels
+- `mean_iou()` — IoU per class (background + foreground) and mean IoU
+- `dice_score()` — Dice coefficient
+- `evaluate_model()` — runs full evaluation on test set
+- `print_results()` — clean results table
+- `visualize_predictions()` — side-by-side input / ground truth / prediction / overlay
+---
 ---
 
 ## Installation
