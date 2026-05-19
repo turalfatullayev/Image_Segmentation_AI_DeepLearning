@@ -1,6 +1,6 @@
 # U-Net Semantic Segmentation — Oxford-IIIT Pet Dataset
 
-A PyTorch implementation of U-Net for binary semantic segmentation, trained on the Oxford-IIIT Pet Dataset. This project was developed as part of the **AI and Deep Learning** course (Academic Year 2024–2025).
+A PyTorch implementation of U-Net for binary semantic segmentation, trained on the Oxford-IIIT Pet Dataset. This project was developed as part of the **AI and Deep Learning** course .
 
 ---
 
@@ -114,11 +114,6 @@ Training for 25 epochs with Adam optimizer (lr=1e-3) and combined BCE + Dice los
 pip install torch torchvision matplotlib numpy Pillow torchsummary
 ```
 
-**Clone the repository:**
-```bash
-git clone https://github.com/your_username/unet-segmentation.git
-cd unet-segmentation
-```
 
 ---
 
@@ -195,4 +190,4 @@ Place the downloaded file in the root directory of the project.
 
 - U-Net architecture: [Ronneberger et al., 2015](https://arxiv.org/abs/1505.04597)
 - Dataset: [Oxford-IIIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)
-- Course: AI and Deep Learning — Academic Year 2024–2025
+- Course: AI and Deep Learning 
